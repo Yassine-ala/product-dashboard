@@ -1,1 +1,3 @@
-<p>category-list works!</p>
+@for (category of categories(); track category.id) {
+<p>{{ category.wording }}</p>
+}

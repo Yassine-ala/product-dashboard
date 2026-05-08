@@ -1,1 +1,9 @@
-<p>category-selector-page works!</p>
+@if (isLoading) {
+<p>Loading categories...</p>
+} @else if (hasError) {
+<p>An error occurred while loading categories.</p>
+} @else {
+<h1>Catégories</h1>
+
+<app-category-list [categories]="categories" />
+}

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-category-list',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './category-list.html',
   styleUrl: './category-list.scss',
 })
-export class CategoryList {}
+export class CategoryList {
+  categories = input.required<Category[]>();
+}
