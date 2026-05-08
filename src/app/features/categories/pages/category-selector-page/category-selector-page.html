@@ -1,8 +1,32 @@
 @if (isLoading()) {
-<p>Loading categories...</p>
+  <p>Loading categories...</p>
 } @else if (hasError()) {
-<p>An error occurred while loading categories.</p>
+  <p>An error occurred while loading categories.</p>
 } @else {
-<h1>Catégories</h1>
-<app-category-list [categories]="categories()" />
+
+  <!-- todo: move to category-toolbar -->
+  <div style="display: flex">
+    <h1>Catégories</h1>
+
+    <app-category-view-toggle
+    [viewMode]="viewMode()"
+    (viewModeChange)="viewMode.set($event)"
+    ></app-category-view-toggle>
+  </div>
+
+  <!-- todo: move to category-search -->
+  <input
+  type="text"
+  placeholder="Rechercher une catégorie"
+  [value]="search()"
+  (input)="search.set($any($event.target).value)"
+  />
+
+  @if (viewMode() === 'grouped') {
+    @for (group of groupedCategories(); track group.groupName) {
+      <app-category-group-section [section]="group"></app-category-group-section>
+    }
+  } @else {
+    <app-category-list [categories]="sortedCategories()" [showGroupBadge]="true"></app-category-list>
+  }
 }

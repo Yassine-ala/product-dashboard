@@ -1,4 +1,4 @@
-export interface CategoryGroup {
+interface CategoryGroup {
   id: number;
   name: string;
   color?: string;
@@ -9,4 +9,10 @@ export interface Category {
   group?: CategoryGroup;
   wording: string;
   description: string | null;
+}
+
+export interface CategoryGroupViewModel {
+  groupName: string;
+  groupColor?: string;
+  categories: Category[];
 }

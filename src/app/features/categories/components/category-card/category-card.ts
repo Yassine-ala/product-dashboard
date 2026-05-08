@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-category-card',
@@ -6,4 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './category-card.html',
   styleUrl: './category-card.scss',
 })
-export class CategoryCard {}
+export class CategoryCard {
+  readonly category = input.required<Category>();
+  readonly showGroupBadge = input(false);
+
+  readonly groupColor = computed(() =>
+    this.category().group?.color?.slice(2)
+  );
+}

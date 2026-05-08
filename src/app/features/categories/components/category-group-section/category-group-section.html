@@ -1,1 +1,9 @@
-<p>category-group-section works!</p>
+<section>
+  <div class="group-section" [style.background-color]="section().groupColor">
+    <h2 class="group-section__title">
+      {{ section().groupName }}
+    </h2>
+  </div>
+
+  <app-category-list [categories]="section().categories"></app-category-list>
+</section>

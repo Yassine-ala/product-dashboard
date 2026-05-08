@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-category-view-toggle',
@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './category-view-toggle.html',
   styleUrl: './category-view-toggle.scss',
 })
-export class CategoryViewToggle {}
+export class CategoryViewToggle {
+  readonly viewMode = input.required<'grouped' | 'alphabetical'>();
+  readonly viewModeChange = output<'grouped' | 'alphabetical'>();
+}
