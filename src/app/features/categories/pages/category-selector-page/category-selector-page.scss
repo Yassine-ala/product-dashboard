@@ -1,11 +1,16 @@
 .category-selector-page {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  background: #ffffff;
 
   &__content {
     flex: 1;
-    overflow: auto;
-    padding: 1.5rem;
+    overflow-y: auto;
+    padding: 24px 32px;
+    background: #f6f7fb;
+    display: flex;
+    flex-direction: column;
   }
 }

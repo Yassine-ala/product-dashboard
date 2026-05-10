@@ -1,0 +1,40 @@
+.category-view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    height: 32px;
+    padding: 0 12px;
+
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+
+    color: #667085;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    &:hover {
+      background: #f3f8fc;
+      color: #00a6f4;
+    }
+
+    &--active {
+      background: #edf8ff;
+      color: #00a6f4;
+    }
+  }
+
+  &__icon {
+    font-size: 15px;
+    line-height: 1;
+    color: currentColor;
+  }
+}

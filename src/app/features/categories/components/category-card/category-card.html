@@ -1,14 +1,14 @@
-<div>
+<div class="category-card">
   @if (showGroupBadge() && category().group) {
   <div
-   class="category-group-badge"
-   [style.padding]="'10px'"
-   [style.color]="groupColor()"
-   [style.background-color]="'color-mix(in srgb, ' + groupColor() + ' 15%, transparent)'">
-    {{ category().group?.name }}
+    class="category-group-badge"
+    [style.color]="groupColor()"
+    [style.background-color]="'color-mix(in srgb, ' + groupColor() + ' 15%, transparent)'"
+  >
+  {{ category().group?.name }}
   </div>
   }
 
-  <h4>{{ category().wording }}</h4>
-  <p>{{ category().description }}</p>
+  <h4 class="category-card__title">{{ category().wording }}</h4>
+  <p class="category-card__description">{{ category().description }}</p>
 </div>

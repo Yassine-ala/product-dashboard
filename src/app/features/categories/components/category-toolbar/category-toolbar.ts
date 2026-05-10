@@ -1,11 +1,8 @@
 import { Component, input, output } from '@angular/core';
-import { CategoryViewToggle } from '../category-view-toggle/category-view-toggle';
 
 @Component({
   selector: 'app-category-toolbar',
-  imports: [
-    CategoryViewToggle,
-  ],
+  imports: [],
   templateUrl: './category-toolbar.html',
   styleUrl: './category-toolbar.scss',
 })

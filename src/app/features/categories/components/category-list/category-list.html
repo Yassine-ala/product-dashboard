@@ -1,5 +1,8 @@
 <div class="category-list">
-    @for (category of categories(); track category.id) {
-    <app-category-card [category]="category" [showGroupBadge]="showGroupBadge()"></app-category-card>
-    }
+  @for (category of categories(); track category.id) {
+  <app-category-card
+    [category]="category"
+    [showGroupBadge]="showGroupBadge()"
+  ></app-category-card>
+  }
 </div>

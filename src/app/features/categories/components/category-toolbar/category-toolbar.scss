@@ -1,23 +1,24 @@
 .category-toolbar {
   display: flex;
-  gap: 1rem;
-
-  padding: 1rem 1.5rem 1.5rem;
-
-  &__search {
-    flex: 1;
-    min-width: 0;
-  }
-
-  &__filter {
-    width: 14rem;
-  }
+  gap: 16px;
+  padding: 0 32px 24px;
+  background: #ffffff;
 
   &__search,
   &__filter {
-    padding: 0.75rem 1rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.75rem;
-    background-color: white;
+    height: 44px;
+    padding: 0 16px;
+    border: 1px solid #d9dde7;
+    background: #ffffff;
+    color: #1f2937;
+    font-size: 14px;
+  }
+
+  &__search {
+    flex: 1;
+  }
+
+  &__filter {
+    width: 220px;
   }
 }

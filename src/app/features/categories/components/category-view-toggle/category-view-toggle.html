@@ -1,15 +1,21 @@
-<button
-  type="button"
-  [disabled]="viewMode()=== 'grouped'"
-  (click)="viewModeChange.emit('grouped')"
->
-  Grouped
-</button>
+<div class="category-view-toggle">
+  <button
+    type="button"
+    class="category-view-toggle__button"
+    [class.category-view-toggle__button--active]="viewMode() === 'grouped'"
+    (click)="viewModeChange.emit('grouped')"
+  >
+    <span class="category-view-toggle__icon">◈</span>
+    Groupe de catégorie
+  </button>
 
-<button
-  type="button"
-  [disabled]="viewMode()=== 'alphabetical'"
-  (click)="viewModeChange.emit('alphabetical')"
->
-  Alphabetical
-</button>
+  <button
+    type="button"
+    class="category-view-toggle__button"
+    [class.category-view-toggle__button--active]="viewMode() === 'alphabetical'"
+    (click)="viewModeChange.emit('alphabetical')"
+  >
+    <span class="category-view-toggle__icon">↧</span>
+    Ordre alphabétique
+  </button>
+</div>
