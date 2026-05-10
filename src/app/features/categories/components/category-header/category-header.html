@@ -1,0 +1,8 @@
+<header class="category-header">
+  <h1 class="category-header__title">Catégories</h1>
+
+  <app-category-view-toggle
+    [viewMode]="viewMode()"
+    (viewModeChange)="viewModeChange.emit($event)"
+  ></app-category-view-toggle>
+</header>

@@ -24,6 +24,19 @@ export function filterCategoriesBySearch(
   );
 }
 
+export function filterCategoriesByGroup(
+  categories: Category[],
+  selectedGroup: string
+): Category[] {
+  if (!selectedGroup) {
+    return categories;
+  }
+
+  return categories.filter(
+    category => category.group?.name === selectedGroup
+  );
+}
+
 export function groupCategoriesByGroup(categories: Category[]): CategoryGroupViewModel[] {
   const groups = new Map<string, CategoryGroupViewModel>();
 

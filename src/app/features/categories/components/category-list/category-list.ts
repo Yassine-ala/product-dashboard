@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Category } from '../../models/category.model';
 import { CategoryCard } from '../category-card/category-card';
 
@@ -10,5 +10,7 @@ import { CategoryCard } from '../category-card/category-card';
 })
 export class CategoryList {
   readonly categories = input.required<Category[]>();
+  readonly selectedCategory = input<Category | null>(null);
   readonly showGroupBadge = input(false);
+  readonly categorySelection = output<Category>();
 }

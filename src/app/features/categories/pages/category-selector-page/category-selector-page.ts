@@ -5,16 +5,27 @@ import { CategoriesApiService } from '../../api/categories-api.service';
 import { Category } from '../../models/category.model';
 import { CategoryList } from '../../components/category-list/category-list';
 import {
+  filterCategoriesByGroup,
   filterCategoriesBySearch,
   groupCategoriesByGroup,
   sortCategoriesAlphabetically
 } from '../../utils/category-filter.utils';
 import { CategoryGroupSection } from '../../components/category-group-section/category-group-section';
-import { CategoryViewToggle } from '../../components/category-view-toggle/category-view-toggle';
+import { CategorySelectionFooter } from '../../components/category-selection-footer/category-selection-footer';
+import { CategoryToolbar } from '../../components/category-toolbar/category-toolbar';
+import { CategoryHeader } from '../../components/category-header/category-header';
+
+const COMPONENTS = [
+  CategoryList,
+  CategoryGroupSection,
+  CategorySelectionFooter,
+  CategoryToolbar,
+  CategoryHeader
+];
 
 @Component({
   selector: 'app-category-selector-page',
-  imports: [CategoryList, CategoryGroupSection, CategoryViewToggle],
+  imports: COMPONENTS,
   templateUrl: './category-selector-page.html',
   styleUrl: './category-selector-page.scss',
 })
@@ -28,10 +39,18 @@ export class CategorySelectorPage implements OnInit {
   readonly search = signal('');
   readonly viewMode = signal<'grouped' | 'alphabetical'>('grouped');
 
+  readonly selectedGroup = signal('');
+  readonly selectedCategory = signal<Category | null>(null);
+
   readonly filteredCategories = computed(() => {
-    return filterCategoriesBySearch(
+    const searchFilteredCategories = filterCategoriesBySearch(
       this.categories(),
       this.search()
+    );
+
+    return filterCategoriesByGroup(
+      searchFilteredCategories,
+      this.selectedGroup()
     );
   });
 
@@ -44,6 +63,15 @@ export class CategorySelectorPage implements OnInit {
   readonly groupedCategories = computed(() =>
     groupCategoriesByGroup(this.filteredCategories())
   );
+
+  readonly availableGroups = computed(() =>
+    Array.from(
+      new Set(
+        this.categories()
+          .map(category => category.group?.name)
+          .filter((group): group is string => !!group)
+      )
+    ));
 
   ngOnInit(): void {
     this._loadCategories();
@@ -70,5 +98,13 @@ export class CategorySelectorPage implements OnInit {
           this.hasError.set(true);
         },
       });
+  }
+
+  onCategorySelection(category: Category): void {
+    this.selectedCategory.set(category);
+  }
+
+  onValidateSelection(): void {
+    console.log(this.selectedCategory());
   }
 }

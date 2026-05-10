@@ -1,0 +1,10 @@
+<footer class="category-selection-footer">
+  <button
+    type="button"
+    class="category-selection-footer__button"
+    [disabled]="isSelectionDisabled()"
+    (click)="validateSelection.emit()"
+  >
+    Sélectionner la catégorie
+  </button>
+</footer>

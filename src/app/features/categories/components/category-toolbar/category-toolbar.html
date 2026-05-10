@@ -1,1 +1,21 @@
-<p>category-toolbar works!</p>
+<div class="category-toolbar">
+  <input
+    class="category-toolbar__search"
+    type="text"
+    placeholder="Rechercher une catégorie"
+    [value]="search()"
+    (input)="searchChange.emit($any($event.target).value)"
+  />
+
+  <select
+    class="category-toolbar__filter"
+    [value]="selectedGroup()"
+    (change)="selectedGroupChange.emit($any($event.target).value)"
+  >
+    <option value="">Tous les groupes</option>
+
+    @for (group of groups(); track group) {
+    <option [value]="group">{{ group }}</option>
+    }
+  </select>
+</div>

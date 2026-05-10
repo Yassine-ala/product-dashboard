@@ -3,30 +3,40 @@
 } @else if (hasError()) {
   <p>An error occurred while loading categories.</p>
 } @else {
-
-  <!-- todo: move to category-toolbar -->
-  <div style="display: flex">
-    <h1>Catégories</h1>
-
-    <app-category-view-toggle
+  <main class="category-selector-page">
+    <app-category-header
     [viewMode]="viewMode()"
     (viewModeChange)="viewMode.set($event)"
-    ></app-category-view-toggle>
-  </div>
+    ></app-category-header>
 
-  <!-- todo: move to category-search -->
-  <input
-  type="text"
-  placeholder="Rechercher une catégorie"
-  [value]="search()"
-  (input)="search.set($any($event.target).value)"
-  />
+    <app-category-toolbar
+    [search]="search()"
+    [selectedGroup]="selectedGroup()"
+    [groups]="availableGroups()"
+    (searchChange)="search.set($event)"
+    (selectedGroupChange)="selectedGroup.set($event)"
+    ></app-category-toolbar>
 
-  @if (viewMode() === 'grouped') {
-    @for (group of groupedCategories(); track group.groupName) {
-      <app-category-group-section [section]="group"></app-category-group-section>
-    }
-  } @else {
-    <app-category-list [categories]="sortedCategories()" [showGroupBadge]="true"></app-category-list>
-  }
+    <section class="category-selector-page__content">
+      @if (viewMode() === 'grouped') {
+        @for (group of groupedCategories(); track group.groupName) {
+          <app-category-group-section
+          [section]="group"
+          ></app-category-group-section>
+        }
+      } @else {
+        <app-category-list
+          [categories]="sortedCategories()"
+          [selectedCategory]="selectedCategory()"
+          (categorySelection)="onCategorySelection($event)"
+          [showGroupBadge]="true"
+        ></app-category-list>
+      }
+    </section>
+
+    <app-category-selection-footer
+    [isSelectionDisabled]="!selectedCategory()"
+    (validateSelection)="onValidateSelection()"
+    ></app-category-selection-footer>
+</main>
 }
