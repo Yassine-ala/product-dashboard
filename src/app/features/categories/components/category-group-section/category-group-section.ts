@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { CategoryGroupViewModel } from '../../models/category.model';
+import { Component, input, output } from '@angular/core';
+import { Category, CategoryGroupViewModel } from '../../models/category.model';
 import { CategoryList } from '../category-list/category-list';
 
 @Component({
@@ -10,4 +10,6 @@ import { CategoryList } from '../category-list/category-list';
 })
 export class CategoryGroupSection {
   section = input.required<CategoryGroupViewModel>();
+  readonly selectedCategory = input<Category | null>(null);
+  readonly categorySelection = output<Category>();
 }

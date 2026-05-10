@@ -8,5 +8,8 @@
     </h2>
   </div>
 
-  <app-category-list [categories]="section().categories"></app-category-list>
+  <app-category-list
+    [categories]="section().categories"
+    [selectedCategory]="selectedCategory()"
+    (categorySelection)="categorySelection.emit($event)"></app-category-list>
 </section>

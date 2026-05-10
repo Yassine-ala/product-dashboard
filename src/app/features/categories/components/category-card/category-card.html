@@ -1,4 +1,6 @@
-<div class="category-card">
+<div class="category-card"
+     [class.category-card--selected]="selected()"
+     (click)="categorySelection.emit()">
   @if (showGroupBadge() && category().group) {
   <div
     class="category-group-badge"

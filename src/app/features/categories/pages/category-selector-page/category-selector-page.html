@@ -22,6 +22,8 @@
         @for (group of groupedCategories(); track group.groupName) {
           <app-category-group-section
           [section]="group"
+          [selectedCategory]="selectedCategory()"
+          (categorySelection)="onCategorySelection($event)"
           ></app-category-group-section>
         }
       } @else {

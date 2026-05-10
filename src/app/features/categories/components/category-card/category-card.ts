@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { Category } from '../../models/category.model';
 
 @Component({
@@ -10,6 +10,8 @@ import { Category } from '../../models/category.model';
 export class CategoryCard {
   readonly category = input.required<Category>();
   readonly showGroupBadge = input(false);
+  readonly selected = input(false);
+  readonly categorySelection = output<void>();
 
   readonly groupColor = computed(() =>
     this.category().group?.color?.slice(2)

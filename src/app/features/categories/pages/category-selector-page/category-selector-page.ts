@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
 import { finalize, forkJoin } from 'rxjs';
 
 import { CategoriesApiService } from '../../api/categories-api.service';
@@ -72,6 +72,20 @@ export class CategorySelectorPage implements OnInit {
           .filter((group): group is string => !!group)
       )
     ));
+
+  readonly clearSelectionEffect = effect(() => {
+    const selectedCategory = this.selectedCategory();
+    const filteredCategories = this.filteredCategories();
+
+    if (
+      selectedCategory &&
+      !filteredCategories.some(
+        category => category.id === selectedCategory.id
+      )
+    ) {
+      this.selectedCategory.set(null);
+    }
+  });
 
   ngOnInit(): void {
     this._loadCategories();

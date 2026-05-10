@@ -3,6 +3,8 @@
   <app-category-card
     [category]="category"
     [showGroupBadge]="showGroupBadge()"
+    [selected]="selectedCategory()?.id === category.id"
+    (categorySelection)="categorySelection.emit(category)"
   ></app-category-card>
   }
 </div>
